@@ -46,6 +46,12 @@ class Success extends HttpException{
     }
 }
 
+/**
+ *找不到资源
+ *
+ * @class NotFound
+ * @extends {HttpException}
+ */
 class NotFound extends HttpException{
     constructor(msg,errorCode){
         super()
@@ -55,12 +61,28 @@ class NotFound extends HttpException{
     }
 }
 
+/**
+ *登录失败
+ *
+ * @class AuthFailed
+ * @extends {HttpException}
+ */
 class AuthFailed extends HttpException{
     constructor(msg,errorCode){
         super()
         this.msg = msg || '授权失败'
         this.errorCode = errorCode || 10004
         this.code = 401
+    }
+}
+
+
+class Forbidden extends HttpException{
+    constructor(msg,errorCode){
+        super()
+        this.msg = msg || '禁止访问'
+        this.errorCode = errorCode || 10006
+        this.code = 403
     }
 }
 
@@ -72,5 +94,6 @@ module.exports = {
     ParameterException,
     Success,
     NotFound,
-    AuthFailed
+    AuthFailed,
+    Forbidden
 }

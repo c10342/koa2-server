@@ -10,7 +10,7 @@ function isThisType(val){
 
 // 登录方式,模拟枚举类型
 const LoginType = {
-    USER_MINI_PROGRAM:100,
+    USER_MINI_PROGRAM:100, //小程序登录
     USER_EMAIL:101,
     USER_MOBILE:100,
     ADMIN_EMAIL:200,

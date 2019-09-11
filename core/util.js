@@ -3,7 +3,7 @@ const config = require("../config/config")
 /***
  *
  */
-const findMembers = function(instance, { prefix, specifiedType, filter }) {
+const findMembers = function (instance, { prefix, specifiedType, filter }) {
   // 递归函数
   function _find(instance) {
     //基线条件（跳出递归）
@@ -31,10 +31,18 @@ const findMembers = function(instance, { prefix, specifiedType, filter }) {
   return _find(instance)
 }
 
-const generateToken = function(uid, scope) {
-  const secretKey = config.security.secretKey
-  const expiresIn = config.security.expiresIn
-  const token = jwt.sign({ uid, scope }, secretKey, { expiresIn })
+
+const generateToken = function (uid, scope) {
+  const secretKey = global.config.security.secretKey
+  const expiresIn = global.config.security.expiresIn
+  // 生成token
+  // 第一个参数是在token中携带的信息
+  // 第二个参数是用于生成token的key
+  // 第三个参数是配置项
+  const token = jwt.sign({
+    uid,
+    scope
+  }, secretKey, { expiresIn })
   return token
 }
 

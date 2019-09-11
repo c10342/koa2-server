@@ -7,6 +7,7 @@ const { Sequelize, Model } = require('sequelize')
 
 const {AuthFailed} = require('../../core/http-exception')
 
+
 class User extends Model {
     static async verifyMobilePassword(email,password){
         const user = await User.findOne({
@@ -23,6 +24,20 @@ class User extends Model {
             throw new AuthFailed('密码错误')
         }
         return user
+    }
+
+    static async getUserByOpenid(openid){
+        return await User.findOne({
+            where:{
+                openid
+            }
+        })
+    }
+
+    static async registerByopenid(openid){
+        return await User.create({
+            openid
+        })
     }
  }
 
