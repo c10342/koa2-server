@@ -86,6 +86,23 @@ class Forbidden extends HttpException{
     }
 }
 
+class LikeError extends HttpException{
+    constructor(msg,errorCode){
+        super()
+        this.msg = msg || '你已经点过赞了'
+        this.errorCode = errorCode || 60001
+        this.code = 400
+    }
+}
+
+class DislikeError extends HttpException{
+    constructor(msg,errorCode){
+        super()
+        this.msg = msg || '你已取消点赞'
+        this.errorCode = errorCode || 6002
+        this.code = 600
+    }
+}
 
 
 
@@ -95,5 +112,7 @@ module.exports = {
     Success,
     NotFound,
     AuthFailed,
-    Forbidden
+    Forbidden,
+    LikeError,
+    DislikeError
 }

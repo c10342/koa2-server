@@ -9,6 +9,8 @@ const catchError = require('./middlewares/exceptions')
 require('./app/models/user')
 require('./app/models/classic')
 require('./app/models/flow')
+require('./app/models/art')
+require('./app/models/favor')
 
 const app = new Koa()
 

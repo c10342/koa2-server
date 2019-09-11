@@ -6,6 +6,7 @@ class PositiveIntegerValidator extends LinValidator {
     constructor() {
         super()
         this.id = [
+            // isInt会自动把字符串数字转化为数字
             new Rule('isInt', '需要是正整数', { min: 1 })
         ]
     }
@@ -81,28 +82,40 @@ class TokenValidator extends LinValidator {
     }
 
     validateLoginType(vals) {
-        const type = vals.body.type
-        if (!type) {
-            throw new Error('type参数缺失')
-        }
-        if (!LoginType.isThisType(type)) {
-            throw new Error('type参数不正确')
-        }
+        checkType(vals)
     }
 }
 
+function checkType(vals) {
+    const type = vals.body.type
+    if (!type) {
+        throw new Error('type参数缺失')
+    }
+    if (!LoginType.isThisType(type)) {
+        throw new Error('type参数不正确')
+    }
+}
 
-class NotEmptyValidator extends LinValidator{
-    constructor(){
+class NotEmptyValidator extends LinValidator {
+    constructor() {
         super()
         this.token = [
-            new Rule('isLength','token不能为空',{min:1})
+            new Rule('isLength', 'token不能为空', { min: 1 })
         ]
     }
 }
+
+class LikeValidator extends PositiveIntegerValidator {
+    constructor() {
+        super()
+        this.validateType = checkType
+    }
+}
+
 module.exports = {
     PositiveIntegerValidator,
     RegisterValidator,
     TokenValidator,
-    NotEmptyValidator
+    NotEmptyValidator,
+    LikeValidator
 }
