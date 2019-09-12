@@ -17,6 +17,14 @@ const LoginType = {
     isThisType
 }
 
+const Arttype = {
+    MOVIE:100,
+    MUSIC:200,
+    SENTENCE:300,
+    BOOK:400
+}
+
 module.exports = {
-    LoginType
+    LoginType,
+    Arttype
 }
