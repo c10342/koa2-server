@@ -6,6 +6,8 @@ const { Flow } = require('../../models/flow')
 
 const { Art } = require('../../models/art')
 
+const {Favor} = require('../../models/favor')
+
 const router = new Router({
     prefix: '/v1/classic'
 })
@@ -24,6 +26,11 @@ router.get('/latest', new Auth().m, async (ctx) => {
     // 往art对象里面设置属性
     art.setDataValue('index', latest.index)
     ctx.body = art
+})
+
+router.get('/favor',new Auth().m,async (ctx)=>{
+    const uid = ctx.auth.uid
+    ctx.body = await Favor.getMyClassicFavors(uid)
 })
 
 module.exports = router
