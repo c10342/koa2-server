@@ -10,13 +10,14 @@ const { Favor } = require('./favor')
 
 
 class Book extends Model {
-    constructor(id) {
-        super()
-        this.id = id
-    }
+    // 自定义模型中不要使用构造函数
+    // constructor(id) {
+    //     super()
+    //     this.id = id
+    // }
 
-    async detail() {
-        const url = util.format(global.config.yushu.detailUrl, this.id)
+    async detail(id) {
+        const url = util.format(global.config.yushu.detailUrl, id)
         const result = await axios.get(url)
         return result
     }

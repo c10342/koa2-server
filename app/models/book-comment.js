@@ -20,6 +20,33 @@ class Comment extends Model {
             return await comment.increment('nums', { by: 1 })
         }
     }
+
+    static async getComment() {
+        const result = await Comment.findAll()
+        return result
+    }
+
+    /** 
+     * 对象序列化就是根据这个函数
+        可以过滤掉对象某些字段
+        let obj = {
+            a:1,
+            b:2,
+            toJSON(){
+                return {
+                    c:4
+                }
+            }
+        }
+        console.log(obj.toJSON()) //{ c: 4 }
+    */
+    // toJSON() {
+    //     return {
+    //         // this => Model
+    //         content: this.getDataValue('content'),
+    //         nums: this.getDataValue('nums')
+    //     }
+    // }
 }
 
 Comment.init({
@@ -36,4 +63,4 @@ Comment.init({
         tableName: 'comment'
     })
 
-    module.exports = {Comment}
+module.exports = { Comment }

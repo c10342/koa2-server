@@ -1,4 +1,6 @@
-const Sequelize = require('sequelize')
+const {Sequelize,Model} = require('sequelize')
+
+const {unset,clone} = require('lodash')
 
 const {user,password,host,port,dialect,dbName} = require('../config/config').database
 
@@ -22,5 +24,14 @@ sequelize.sync({
     // force:true,当已经存在数据表的时候，允许动态添加字段,并清空表数据
     force:false,
 })
+
+// 改写Model序列化方法
+Model.prototype.toJSON = function(){
+    let data = clone(this.dataValues)
+    unset(data,'createdAt')
+    unset(data,'updatedAt')
+    unset(data,'deletedAt')
+    return data
+}
 
 module.exports = {sequelize}
