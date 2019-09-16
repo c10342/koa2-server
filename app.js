@@ -11,6 +11,7 @@ require('./app/models/classic')
 require('./app/models/flow')
 require('./app/models/art')
 require('./app/models/favor')
+require('./app/models/hot-book')
 
 const app = new Koa()
 

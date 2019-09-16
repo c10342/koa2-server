@@ -33,13 +33,13 @@ class Art {
         const finder = { where: { id: { [Op.in]: ids } } }
         switch (type) {
             case 100:
-                arts = await Movie.findOne(finder)
+                arts = await Movie.findAll(finder)
                 break;
             case 200:
-                arts = await Music.findOne(finder)
+                arts = await Music.findAll(finder)
                 break;
             case 300:
-                arts = await Sentence.findOne(finder)
+                arts = await Sentence.findAll(finder)
                 break;
             default:
                 break;
@@ -62,7 +62,7 @@ class Art {
                 art = await Sentence.findOne(finder)
                 break;
             case 400:
-
+                // art = await HotBook.findOne(finder)
                 break;
             default:
                 break;
