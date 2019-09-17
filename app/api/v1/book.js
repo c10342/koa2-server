@@ -44,7 +44,6 @@ router.get('/favor/count',new Auth().m, async (ctx)=>{
 router.get('/:book_id/favor',new Auth().m,async (ctx)=>{
     const v = await new PositiveIntegerValidator().validate(ctx,{id:'book_id'})
     const favor = await Book.getBookFavor(ctx.auth.uid,v.get('path.book_id'))
-
     ctx.body = favor
 })
 
